@@ -6,6 +6,7 @@
     <title>اللهم صلي على محمد وآل محمد 🌺</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
         :root { --gold: #ffd700; --gold-l: #ffcc00; --dark-bg: #000; --card-bg: rgba(20, 20, 20, 0.9); }
         body { margin: 0; padding: 0; color: #eee; font-family: 'Cairo', sans-serif; background: var(--dark-bg); overflow-x: hidden; scroll-behavior: smooth; }
@@ -15,6 +16,9 @@
         .loader-hint { display: block; font-size: 0.4em; letter-spacing: 1px; margin-top: 10px; color: #555; font-weight: normal;}
         @keyframes blink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.95); } }
 
+        /* تنسيق الخلفية المتحركة الجديدة */
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; top: 0; left: 0; }
+        
         #main-content { position: relative; z-index: 1; }
         .moon { position: fixed; top: 40px; left: 40px; font-size: 80px; opacity: 0.3; filter: drop-shadow(0 0 20px var(--gold)); z-index: -1; }
         #mouse-aura { position: fixed; width: 350px; height: 350px; background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: 999; transform: translate(-50%, -50%); transition: transform 0.1s ease-out; }
@@ -56,7 +60,6 @@
             display: flex; justify-content: center; align-items: center;
         }
 
-        /* تنسيق أزرار التواصل الجديدة */
         .social-flex { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px; }
         .social-link { padding: 12px 25px; border-radius: 50px; text-decoration: none; color: #fff; font-weight: bold; display: flex; align-items: center; gap: 10px; font-size: 0.9em; transition: 0.3s; }
         .link-tg { background: #0088cc; }
@@ -70,8 +73,10 @@
 <body onclick="startExperience()">
 
     <div id="loader" onclick="startExperience()">
-        <div class="loader-text">Welcome🫡<span class="loader-hint">انقر للدخول  🎵</span></div>
+        <div class="loader-text">Welcome🫡<span class="loader-hint">انقر للدخول للمملكة 🎵</span></div>
     </div>
+
+    <div id="particles-js"></div>
 
     <div id="main-content">
         <div id="mouse-aura"></div>
@@ -91,7 +96,7 @@
         <section class="hero">
             <div class="p-frame">
                 <img id="p-img" src="https://i.postimg.cc/DyBwfBXH/1773966290058.png" alt="اللهم صلي على محمد وآل محمد ">
-                <div class="p-label">ر🇮🇶</div>
+                <div class="p-label">المدير العام</div>
             </div>
             <h1></h1>
             <div class="sub-title">التعامل معي سهل جداً أعطني احتراماً ، أعطيك ماهو أكثر .🤑</div>
@@ -118,7 +123,7 @@
             <div class="contact-box">
                 <input type="text" id="u_name" class="input-f" placeholder="الاسم الكريم">
                 <textarea id="u_msg" class="input-f" rows="5" placeholder="اكتب تفاصيل مشروعك هنا..."></textarea>
-                <button class="btn-send" onclick="sendToTG()">🚀 إرسال الرسالة </button>
+                <button class="btn-send" onclick="sendToTG()">🚀 إرسال الرسالة الملكية</button>
                 <div id="status"></div>
                 <div class="social-flex">
                     <a href="https://t.me/Haed313r" target="_blank" class="social-link link-tg"><i class="fab fa-telegram"></i> تليجرام</a>
@@ -126,7 +131,7 @@
                 </div>
             </div>
         </div>
-        <footer><p>©Haider Ali  2026 | تم التطوير ببركة الصلاة على محمد وال محمد 🌺</p></footer>
+        <footer><p>© 2026 | تم التطوير ببركة الصلاة على محمد وال محمد 🌺</p></footer>
     </div>
 
     <script>
@@ -155,6 +160,46 @@
             const aura = document.getElementById('mouse-aura');
             aura.style.left = e.clientX + 'px'; aura.style.top = e.clientY + 'px'; 
         };
+
+        // إعدادات الخلفية المتحركة الجديدة (الشبكة الذهبية الذكية)
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffd700" }, // اللون الذهبي للنقاط
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.3, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffd700", // اللون الذهبي للخطوط
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2, // سرعة الحركة
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" }, // تفاعل عند مرور الماوس
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
 
         async function spyNotify() {
             try {
