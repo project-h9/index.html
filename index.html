@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>اللهم صلي على محمد وآل محمد 🌺</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
         :root { --gold: #ffd700; --gold-l: #ffcc00; --dark-bg: #000; --card-bg: rgba(20, 20, 20, 0.9); }
@@ -59,13 +60,22 @@
         .card:hover { transform: translateY(-10px); border-color: var(--gold); background: rgba(255, 215, 0, 0.05); }
         .card i { font-size: 3em; color: var(--gold); display: block; margin-bottom: 20px; }
 
-        .contact-box { max-width: 600px; margin: 80px auto; background: rgba(15,15,15,0.95); padding: 50px; border-radius: 35px; border: 1px solid #333; }
+        .contact-box { max-width: 600px; margin: 80px auto; background: rgba(15,15,15,0.95); padding: 50px; border-radius: 35px; border: 1px solid #333; text-align: center; }
         .input-f { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 15px; border: 1px solid #444; background: #000; color: #fff; font-family: 'Cairo'; text-align: right; box-sizing: border-box; outline: none; transition: 0.3s; }
         .input-f:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
         
         .btn-send { width: 100%; padding: 20px; background: linear-gradient(45deg, #b8860b, var(--gold)); color: #000; border: none; border-radius: 50px; font-weight: 900; font-size: 1.3em; cursor: pointer; transition: 0.3s; }
         .btn-send:hover { transform: scale(1.02); box-shadow: 0 10px 25px rgba(255,215,0,0.4); }
         
+        /* تنسيق أزرار التواصل الجديدة */
+        .social-section { margin-top: 30px; padding-top: 25px; border-top: 1px solid #333; }
+        .social-note { color: var(--gold); font-size: 1.1em; margin-bottom: 15px; font-weight: bold; display: block; }
+        .social-flex { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .social-link { padding: 12px 25px; border-radius: 50px; text-decoration: none; color: #fff; font-weight: bold; display: flex; align-items: center; gap: 10px; transition: 0.3s; font-size: 0.9em; }
+        .link-tg { background: #0088cc; }
+        .link-inst { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .social-link:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255,215,0,0.3); }
+
         #status { margin-top: 20px; padding: 15px; display: none; font-weight: bold; text-align: center; border-radius: 10px; }
         footer { padding: 60px; color: #444; background: #050505; text-align: center; margin-top: 100px; }
     </style>
@@ -89,8 +99,8 @@
             <div class="p-label">المدير العام</div>
         </div>
         
-        <h1></h1>
-        <div class="sub-title">التعامل معي سهل جداً أعطني احتراماً ، أعطيك ماهو أكثر .🤑</div></div></div></div> </div> 
+        <h1>حيدر PRO</h1>
+        <div class="sub-title">التعامل معي سهل جداً أعطني احتراماً ، أعطيك ماهو أكثر .🤑</div>
     </section>
 
     <div class="container">
@@ -116,6 +126,18 @@
             <textarea id="u_msg" class="input-f" rows="5" placeholder="اكتب تفاصيل مشروعك هنا..."></textarea>
             <button class="btn-send" onclick="sendToTG()">🚀 إرسال الرسالة الملكية</button>
             <div id="status"></div>
+
+            <div class="social-section">
+                <span class="social-note">⚠️ إذا لم تصل رسالتك تواصل معي عبر حساباتي 👇</span>
+                <div class="social-flex">
+                    <a href="https://t.me/Haed313r" target="_blank" class="social-link link-tg">
+                        <i class="fab fa-telegram"></i> تليجرام
+                    </a>
+                    <a href="https://instagram.com/7_ht7" target="_blank" class="social-link link-inst">
+                        <i class="fab fa-instagram"></i> انستقرام
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
