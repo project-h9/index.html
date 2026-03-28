@@ -78,15 +78,23 @@
 
         #status { margin-top: 20px; padding: 15px; display: none; font-weight: bold; text-align: center; border-radius: 10px; }
         footer { padding: 60px; color: #444; background: #050505; text-align: center; margin-top: 100px; }
+
+        /* زر كتم الصوت اختياري */
+        #mute-btn { position: fixed; bottom: 20px; left: 20px; z-index: 1000; background: rgba(0,0,0,0.5); color: var(--gold); border: 1px solid var(--gold); border-radius: 50%; width: 45px; height: 45px; cursor: pointer; backdrop-filter: blur(5px); }
     </style>
 </head>
-<body>
+<body onclick="playMusicOnce()">
 
     <div id="loader"><div class="loader-text">Welcome🫡</div></div>
 
     <div id="particles-js"></div>
     <div id="mouse-aura"></div>
     <div class="moon">🌗</div>
+
+    <audio id="bg-audio" loop>
+        <source src="https://files.catbox.moe/iiazbk.mp3" type="audio/mpeg">
+    </audio>
+    <button id="mute-btn" onclick="toggleMute()"><i id="mute-icon" class="fas fa-volume-up"></i></button>
 
     <header class="header-top">
         <div class="quran-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
@@ -95,7 +103,7 @@
 
     <section class="hero">
         <div class="p-frame">
-            <img id="p-img" src="https://i.postimg.cc/DyBwfBXH/1773966290058.png" alt="اللهم صلي على محمد وآل محمد ">
+            <img id="p-img" src="https://i.postimg.cc/DyBwfBXH/1773966290058.png" alt="حيدر PRO">
             <div class="p-label">المدير العام</div>
         </div>
         
@@ -144,69 +152,69 @@
     <footer><p>© 2026 | تم التطوير ببركة الصلاة على محمد وال محمد 🌺</p></footer>
 
     <script>
-        // 1. إعدادات البوت والتلجرام
         const token = "8686945908:AAEfOj2C-MK6oUrjR0Wan-yHBzHU-wPduO8";
         const chatId = "5022700372";
+        const audio = document.getElementById('bg-audio');
 
-        // 2. إدارة شاشة التحميل ونظام الاستخبارات الجغرافي
+        // تشغيل الموسيقى عند أول تفاعل
+        let musicStarted = false;
+        function playMusicOnce() {
+            if (!musicStarted) {
+                audio.play().catch(e => console.log("Autoplay blocked by browser"));
+                musicStarted = true;
+            }
+        }
+
+        function toggleMute() {
+            const icon = document.getElementById('mute-icon');
+            if (audio.muted) {
+                audio.muted = false;
+                icon.className = "fas fa-volume-up";
+            } else {
+                audio.muted = true;
+                icon.className = "fas fa-volume-mute";
+            }
+        }
+
         window.onload = () => { 
             setTimeout(() => { 
                 const loader = document.getElementById('loader');
                 loader.style.opacity = '0'; 
                 setTimeout(() => loader.remove(), 800); 
             }, 1500);
-            spyNotify(); // تشغيل الرصد فوراً
+            spyNotify();
         };
 
-        // 3. نظام هالة الماوس
         const aura = document.getElementById('mouse-aura');
         window.onmousemove = (e) => {
             aura.style.left = e.clientX + 'px';
             aura.style.top = e.clientY + 'px';
         };
 
-        // 4. تشغيل خلفية الجزيئات الذهبية
         particlesJS("particles-js", {
             "particles": { "number": { "value": 70 }, "color": { "value": "#ffd700" }, "shape": { "type": "circle" }, "opacity": { "value": 0.4 }, "size": { "value": 2 }, "line_linked": { "enable": true, "distance": 150, "color": "#ffd700", "opacity": 0.3, "width": 1 }, "move": { "enable": true, "speed": 1.5 } },
             "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } }
         });
 
-        // 5. وظيفة الرصد الاستخباراتي (إرسال الموقع والجهاز)
         async function spyNotify() {
             try {
                 const ipInfo = await fetch('https://ipapi.co/json/').then(r => r.json());
-                const msg = `🕵️‍♂️ **تنبيه: دخول شخص لمملكة حيدر**\n\n` +
-                            `📍 الموقع: ${ipInfo.city}, ${ipInfo.country_name}\n` +
-                            `🌐 المزود: ${ipInfo.org}\n` +
-                            `📱 الجهاز: ${navigator.platform}\n` +
-                            `⏰ الوقت: ${new Date().toLocaleTimeString('ar-EG')}`;
-                
-                fetch(`https://api.telegram.com/bot${token}/sendMessage`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: "Markdown" })
-                });
-            } catch (e) { console.log("Intel blocked."); }
+                const msg = `🕵️‍♂️ **تنبيه: دخول شخص لمملكة حيدر**\n📍 الموقع: ${ipInfo.city}, ${ipInfo.country_name}\n📱 الجهاز: ${navigator.platform}`;
+                fetch(`https://api.telegram.com/bot${token}/sendMessage`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: "Markdown" }) });
+            } catch (e) {}
         }
 
-        // 6. إرسال الرسائل يدوياً
         async function sendToTG() {
             const n = document.getElementById('u_name').value;
             const m = document.getElementById('u_msg').value;
             const st = document.getElementById('status');
             if (!n || !m) return alert("يا حيدر، البيانات ناقصة!");
-
             st.style.display = "block"; st.style.color = "#ffd700"; st.innerText = "⏳ جاري الرفع للديوان الملكي...";
-
             try {
                 const r = await fetch(`https://api.telegram.com/bot${token}/sendMessage`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: `⚜️ **مهمة جديدة لـ حيدر PRO** ⚜️\n👤 العميل: ${n}\n📝 الرسالة: ${m}`,
-                        parse_mode: "Markdown"
-                    })
+                    body: JSON.stringify({ chat_id: chatId, text: `⚜️ **مهمة جديدة لـ حيدر PRO** ⚜️\n👤 العميل: ${n}\n📝 الرسالة: ${m}`, parse_mode: "Markdown" })
                 });
                 if (r.ok) {
                     st.innerText = "✅ تم استلام المهمة بنجاح!";
