@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إمبراطورية حيدر الرقمية | v3.0 المطور</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #ffd700; --gold-l: #ffcc00; --dark-bg: #000; --card-bg: rgba(20, 20, 20, 0.9); }
+        
+        /* تأثيرات الخلفية الملكية */
+        body { margin: 0; padding: 0; color: #eee; font-family: 'Cairo', sans-serif; background: var(--dark-bg); overflow-x: hidden; scroll-behavior: smooth; }
+        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 1.5px); background-size: 150px 150px; animation: moveStars 50s linear infinite; z-index: -1; }
+        @keyframes moveStars { from { background-position: 0 0; } to { background-position: 1000px 1000px; } }
+        .moon { position: fixed; top: 40px; left: 40px; font-size: 80px; opacity: 0.4; filter: drop-shadow(0 0 20px var(--gold)); z-index: -1; }
+
+        /* الهيدر القرآني */
+        .header-top { padding: 50px 20px; border-bottom: 2px solid var(--gold); background: rgba(10,10,10,0.8); backdrop-filter: blur(10px); }
+        .quran-text { font-family: 'Amiri', serif; font-size: 2.2em; color: var(--gold); text-shadow: 0 0 10px rgba(255,215,0,0.3); }
+
+        /* قسم البروفايل التعريفي */
+        .hero { padding: 60px 20px; text-align: center; }
+        .p-frame { width: 190px; height: 190px; margin: 0 auto 25px; border-radius: 50%; border: 4px solid var(--gold); box-shadow: 0 0 40px var(--gold); overflow: hidden; background: #1a1a1a; cursor: pointer; position: relative; transition: 0.4s; }
+        .p-frame:hover { transform: scale(1.05); }
+        .p-frame img { width: 100%; height: 100%; object-fit: cover; display: none; }
+        .p-label { line-height: 190px; color: var(--gold); font-size: 13px; font-weight: bold; position: absolute; width: 100%; text-align: center; }
+        
+        h1 { font-size: 3.2em; color: #fff; margin: 10px 0; font-weight: 900; }
+        .sub-title { color: var(--gold); font-size: 1.4em; margin-bottom: 40px; opacity: 0.9; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+        /* شبكة الخدمات والتعريف */
+        .section-h2 { color: var(--gold); font-size: 2.2em; margin: 60px 0 30px; border-right: 5px solid var(--gold); padding-right: 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: var(--card-bg); padding: 40px 25px; border-radius: 25px; border: 1px solid #333; transition: 0.3s; text-align: right; }
+        .card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 10px 30px rgba(255,215,0,0.1); }
+        .card i { font-size: 3em; color: var(--gold); display: block; margin-bottom: 20px; }
+        .card h3 { color: #fff; font-size: 1.7em; margin-bottom: 15px; }
+        .card p { color: #aaa; line-height: 1.7; font-size: 1.1em; }
+
+        /* أشرطة المهارات */
+        .skill-item { margin-bottom: 25px; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; }
+        .bar-bg { background: #222; height: 12px; border-radius: 6px; overflow: hidden; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, #b8860b, var(--gold)); width: 0; transition: 2s cubic-bezier(0.1, 0, 0.2, 1); }
+
+        /* نموذج التواصل المربوط بالتلجرام */
+        .contact-box { max-width: 600px; margin: 80px auto; background: rgba(15,15,15,0.95); padding: 50px; border-radius: 35px; border: 1px solid #333; box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
+        .input-f { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 15px; border: 1px solid #444; background: #000; color: #fff; font-family: 'Cairo'; outline: none; box-sizing: border-box; font-size: 1.1em; }
+        .input-f:focus { border-color: var(--gold); }
+        .btn-send { width: 100%; padding: 20px; background: linear-gradient(45deg, #d4af37, #ffd700); color: #000; border: none; border-radius: 50px; font-weight: 900; font-size: 1.3em; cursor: pointer; transition: 0.3s; }
+        .btn-send:hover { transform: scale(1.02); box-shadow: 0 10px 25px rgba(255,215,0,0.4); }
+        
+        #status { margin-top: 20px; padding: 15px; border-radius: 10px; display: none; font-weight: bold; }
+
+        footer { padding: 60px; color: #444; background: #050505; margin-top: 100px; }
+        input[type="file"] { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+    <div class="moon">🌗</div>
+
+    <header class="header-top">
+        <div class="quran-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+        <p style="color: #555;">"وَقُل رَّبِّ زِدْنِي عِلْمًا"</p>
+    </header>
+
+    <section class="hero">
+        <label for="img-in">
+            <div class="p-frame">
+                <img id="p-img">
+                <div class="p-label" id="p-txt">إختر هويتك البصرية</div>
+            </div>
+        </label>
+        <input type="file" id="img-in" accept="image/*" onchange="saveToDB()">
+        
+        <h1>حيدر PRO</h1>
+        <div class="sub-title">مطور ادوات وبناء مواقع وتطبيقات</div>
+    </section>
+
+    <div class="container">
+        <h2 class="section-h2">من أنا؟ 👤</h2>
+        <div class="card" style="width: 100%; box-sizing: border-box;">
+            <p>حوّل مشاعرك إلى إرث رقمي لا يغيب.. 🕊️
+​"أنا لا أبرمج مواقع فقط، أنا أبني جسوراً من المشاعر.. بأسلوب تقني فاخر."
+​"هل تبحث عن هدية تتجاوز المألوف؟ عن رسالة حب، أو امتنان، أو ذكرى ميلاد تبقى حية في ذاكرة الهاتف والقلب؟
+​أنا هنا لأصيغ لك 'قصة رقمية' خاصة.. موقعاً سرياً لا يفتحه إلا من تحب، بكلمة سر أو بصمة، ليجد بداخله صوركم، ذكرياتكم، وأغانيكما المفضلة تتراقص تحت أضواء النجوم.
+​اجعل هديتك رابطاً سحرياً لا يموت، يفتحه من تحب كلما اشتاق إليك، ليرى أن حبك مكتوبٌ بلغة الأكواد الأبدية.".</p>
+        </div>
+
+        <h2 class="section-h2">خدمات المصنع ⚙️</h2>
+        <div class="grid">
+            <div class="card">
+                <i>🖥️</i>
+                <h3>تطوير الويب</h3>
+                <p>بناء مواقع تعريفية ومتاجر إلكترونية بأداء فائق الحماية وسرعة خيالية.</p>
+            </div>
+            <div class="card">
+                <i>🤖</i>
+                <h3>أتمتة العمليات</h3>
+                <p>برمجة أدوات وبوتات ذكية تقوم بالمهام المتكررة بدلاً عنك لتوفير وقتك.</p>
+            </div>
+            <div class="card">
+                <i>🛡️</i>
+                <h3>الأمن الرقمي</h3>
+                <p>فحص وحماية المواقع والأنظمة من الثغرات الأمنية وضمان سلامة البيانات.</p>
+            </div>
+        </div>
+
+        <h2 class="section-h2">المهارات التقنية ⚡</h2>
+        <div class="card">
+            <div class="skill-item">
+                <div class="skill-info"><span>95%</span><span>HTML5 / CSS3 / JavaScript</span></div>
+                <div class="bar-bg"><div class="bar-fill" data-w="95"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-info"><span>90%</span><span>Python (Automation & Scraping)</span></div>
+                <div class="bar-bg"><div class="bar-fill" data-w="90"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-info"><span>85%</span><span>UI/UX Design & Branding</span></div>
+                <div class="bar-bg"><div class="bar-fill" data-w="85"></div></div>
+            </div>
+        </div>
+
+        <h2 class="section-h2">وغيرها الكثير من الادوات تواصل الان </h2>
+        <div class="contact-box">
+            <input type="text" id="u_name" class="input-f" placeholder="الاسم الكريم">
+            <textarea id="u_msg" class="input-f" rows="5" placeholder="اكتب تفاصيل مشروعك أو استفسارك هنا..."></textarea>
+            <button class="btn-send" onclick="sendToTG()">🚀 إرسال الرسالة الملكية</button>
+            <div id="status"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 حيدر PRO |تم التطوير ببركة الصلاة على محمد وال 🌺</p>
+    </footer>
+
+    <script>
+        // بيانات التلجرام الخاصة بك
+        const token = "8686945908:AAEfOj2C-MK6oUrjR0Wan-yHBzHU-wPduO8";
+        const chatId = "5022700372";
+
+        // --- نظام الحفظ الأبدي (IndexedDB) ---
+        const dbName = "HaiderMasterDB";
+        const storeName = "ProfileStore";
+
+        function initDB() {
+            return new Promise((res) => {
+                const req = indexedDB.open(dbName, 1);
+                req.onupgradeneeded = (e) => e.target.result.createObjectStore(storeName);
+                req.onsuccess = (e) => res(e.target.result);
+            });
+        }
+
+        async function saveToDB() {
+            const file = document.getElementById('img-in').files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                const base64 = e.target.result;
+                const db = await initDB();
+                const tx = db.transaction(storeName, "readwrite");
+                tx.objectStore(storeName).put(base64, "user_photo");
+                renderImg(base64);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function loadFromDB() {
+            const db = await initDB();
+            const tx = db.transaction(storeName, "readonly");
+            const req = tx.objectStore(storeName).get("user_photo");
+            req.onsuccess = () => { if (req.result) renderImg(req.result); };
+            
+            // تحريك المهارات عند التحميل
+            setTimeout(() => {
+                document.querySelectorAll('.bar-fill').forEach(b => b.style.width = b.getAttribute('data-w') + '%');
+            }, 300);
+        }
+
+        function renderImg(src) {
+            const img = document.getElementById('p-img');
+            img.src = src; img.style.display = "block";
+            document.getElementById('p-txt').style.display = "none";
+        }
+
+        window.onload = loadFromDB;
+
+        // نظام الإرسال إلى تلجرام
+        async function sendToTG() {
+            const n = document.getElementById('u_name').value;
+            const m = document.getElementById('u_msg').value;
+            const st = document.getElementById('status');
+            if (!n || !m) return alert("يا حيدر، اطلب منهم إكمال البيانات!");
+
+            st.style.display = "block"; st.style.color = "#ffd700"; st.innerText = "⏳ جاري الإرسال ببركة الله...";
+
+            try {
+                const r = await fetch(`https://api.telegram.com/bot${token}/sendMessage`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: `🌟 رسالة جديدة لـ حيدر PRO 🌟\n👤 الاسم: ${n}\n📝 الرسالة: ${m}`
+                    })
+                });
+                if (r.ok) {
+                    st.innerText = "✅ تم الإرسال بنجاح! شكراً لك.";
+                    st.style.color = "#00ff00";
+                    document.getElementById('u_name').value = ""; document.getElementById('u_msg').value = "";
+                }
+            } catch (e) { st.innerText = "❌ فشل الإرسال، تحقق من الإنترنت."; st.style.color = "#ff4444"; }
+        }
+    </script>
+</body>
+</html>
